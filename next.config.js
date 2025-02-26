@@ -1,36 +1,38 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  // Ignore TypeScript errors during build
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  // Ignore ESLint errors during build
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  // Enable SWC minification for better performance
-  swcMinify: true,
-  // Static export mode (no server)
+const nextConfig = {
+  // Use static export for Vercel deployment
   output: 'export',
+
   // Disable image optimization for static export
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
-  // Disable all experimental features
+
+  // Disable features incompatible with static export
   experimental: {
-    // Disable CSS optimization which requires critters
-    optimizeCss: false,
+    // Disable app directory RSC streaming
+    appDocumentPreloading: false,
+    // Disable any other experimental features
+    serverActions: false
   },
-  // Enable React strict mode
-  reactStrictMode: true,
-  // No trailing slashes in URLs
-  trailingSlash: false,
-  // Disable source maps in production
-  productionBrowserSourceMaps: false,
-  // Provide fallback environment variables
-  env: {
-    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-url.supabase.co',
-    NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder-key',
-    REDIS_MOCK: 'true'
-  }
+
+  // Modify webpack config to handle specific issues
+  webpack: (config) => {
+    // Return the modified config
+    return config;
+  },
+
+  // Disable strict mode for development
+  reactStrictMode: false,
+
+  // Add redirects if needed
+  async redirects() {
+    return [];
+  },
+  
+  // Disable any unused features
+  swcMinify: true,
+  poweredByHeader: false,
 }
+
+module.exports = nextConfig
