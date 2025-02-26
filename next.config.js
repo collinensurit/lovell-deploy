@@ -16,11 +16,10 @@ module.exports = {
   images: {
     unoptimized: true
   },
-  // Disable all static generation features
+  // Experimental features
   experimental: {
     disableOptimizedLoading: true,
     optimizeCss: false,
-    serverActions: false
   },
   // Disable static generation
   staticPageGenerationTimeout: 1000,

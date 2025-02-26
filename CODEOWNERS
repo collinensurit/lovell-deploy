@@ -1,0 +1,28 @@
+# Code ownership for the lovell-deploy repository
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repo
+*                         @collinensurit
+
+# File utility components and libraries
+/src/components/ui/file/  @collinensurit
+/src/lib-new/utils/file/  @collinensurit
+/src/lib-new/hooks/use-file-*  @collinensurit
+
+# Core utilities (consolidated in lib-new)
+/src/lib-new/utils/       @collinensurit
+
+# React hooks
+/src/lib-new/hooks/       @collinensurit
+
+# Context providers
+/src/lib-new/context/     @collinensurit
+
+# Legacy directories (being migrated)
+/src/utils/               @collinensurit
+/src/hooks/               @collinensurit
+/src/hooks-new/           @collinensurit
+/src/lib/                 @collinensurit
+
+# Documentation
+*.md                      @collinensurit

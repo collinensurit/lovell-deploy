@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { ResizablePanel } from '@/components/ui/resizable-panel'
 import { FileExplorer, type FileItem } from '@/components/ui/file/file-explorer'
 import { Chat } from '@/components/ui/chat'
-import { usePanelShortcuts } from '@/hooks/use-panel-shortcuts'
+import { usePanelShortcuts } from '@/hooks-new/use-panel-shortcuts'
 import { TemplatePanel } from '@/components/ui/template-management/template-panel'
 import { ActivityBar, type ActivityBarItem } from '@/components/ui/activity-bar'
 

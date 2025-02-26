@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { useContextMenu } from '@/hooks/use-context-menu'
-import { cn } from '@/lib/utils'
+import { useContextMenu } from '@/hooks-new/use-context-menu'
+import { cn } from '@/lib-new/utils'
 
 interface FileExplorerProps {
   className?: string

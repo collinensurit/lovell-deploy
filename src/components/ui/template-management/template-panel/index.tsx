@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { PlusCircle, X } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib-new/utils'
 
 interface Template {
   id: string

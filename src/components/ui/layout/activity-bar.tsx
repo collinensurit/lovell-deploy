@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import { Home } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib-new/utils'
 
 export interface ActivityBarItem {
   icon: React.ReactNode

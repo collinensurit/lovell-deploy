@@ -1,9 +1,9 @@
 'use client'
 
 import React from 'react'
-import { useTemplates } from '@/hooks/use-templates'
+import { useTemplates } from '@/hooks-new/use-templates'
 import type { Template } from '@/lib/types'
-import cn from 'classnames'
+import { cn } from '@/lib-new/utils'
 
 interface TemplatePanelProps {
   onSelect: (template: Template) => void

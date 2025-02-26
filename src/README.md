@@ -9,12 +9,52 @@ src/
 ├── components/       # React components
 ├── constants/        # Application constants
 ├── hooks/           # Custom React hooks
+├── lib/             # Core libraries and utilities
+├── lib-new/         # Consolidated libraries, hooks, and utilities
+│   ├── context/     # React contexts and providers
+│   ├── hooks/       # Custom React hooks
+│   └── utils/       # Organized utility functions by domain
 ├── pages/           # Next.js pages
 ├── styles/          # Global styles and themes
 ├── types/           # TypeScript type definitions
 ├── utils/           # Utility functions
 └── validators/      # Schema validation
 ```
+
+## Directory Structure Migration
+
+The project is currently undergoing a directory structure reorganization:
+
+### Old Structure (Being Phased Out)
+```
+src/
+├── hooks/           # Custom React hooks
+├── lib/             # Core libraries and utilities
+├── utils/           # Utility functions
+```
+
+### New Structure (Recommended)
+```
+src/
+├── lib-new/         # Consolidated libraries, hooks, and utilities
+│   ├── context/     # React contexts and providers
+│   ├── hooks/       # Custom React hooks
+│   └── utils/       # Organized utility functions by domain
+```
+
+### Migration Guidelines
+
+1. **New code** should be added to the `/lib-new/` structure
+2. **Existing code** should be gradually migrated from the old directories
+3. All utilities from `/utils/` are being moved to appropriate subdirectories in `/lib-new/utils/`
+4. All hooks should be consolidated in `/lib-new/hooks/`
+
+### Consolidated Directories
+- File-related UI components: `/components/ui/file/`
+- File utilities: `/lib-new/utils/file/`
+- File-related hooks: `/lib-new/hooks/`
+
+These changes will improve organization, reduce duplication, and make the codebase more maintainable.
 
 ## Guidelines
 

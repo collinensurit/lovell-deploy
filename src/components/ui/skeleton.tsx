@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib-new/utils'
 
 interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string

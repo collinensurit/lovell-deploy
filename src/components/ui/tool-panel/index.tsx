@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { ResizablePanel } from '../resizable-panel'
-import { cn } from '@/lib/utils/cn'
+import { cn } from '@/lib-new/utils'
 
 export interface ToolPanelProps {
   selectedId: string

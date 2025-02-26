@@ -5,7 +5,7 @@ import { TopBar } from './top-bar'
 import { ActivityBar } from './activity-bar'
 import { ToolPanel } from './tool-panel'
 import { Workspace } from './workspace'
-import { cn } from '@/lib/utils/cn'
+import { cn } from '@/lib-new/utils'
 
 export interface LayoutProps {
   title: string

@@ -2,7 +2,7 @@
 
 import React from 'react'
 import type { Project } from '@/lib/types/project'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib-new/utils'
 
 export interface ProjectListProps {
   projects: Project[]

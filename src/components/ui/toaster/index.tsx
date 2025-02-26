@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react'
-import { useToast } from '@/hooks/use-toast'
+import { useToast } from '@/hooks-new/use-toast'
 
 export interface ToasterProps {
   position?: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'
