@@ -205,7 +205,18 @@ export class KeyboardShortcutManager {
    */
   public static getInstance(): KeyboardShortcutManager {
     if (!KeyboardShortcutManager.instance) {
-      KeyboardShortcutManager.instance = new KeyboardShortcutManager()
+      // Check if we're in a browser environment before creating the instance
+      if (typeof window !== 'undefined') {
+        KeyboardShortcutManager.instance = new KeyboardShortcutManager()
+      } else {
+        // Return a dummy instance for SSR
+        return {
+          register: () => ({ remove: () => {} }),
+          unregister: () => {},
+          getActiveShortcuts: () => [],
+          checkCombo: () => false
+        } as unknown as KeyboardShortcutManager
+      }
     }
     return KeyboardShortcutManager.instance
   }

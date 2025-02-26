@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { isBrowser } from './is-browser'
 
 /**
  * Theme options for the application
@@ -61,15 +62,15 @@ export function setTheme(theme: Theme): void {
 }
 
 /**
- * Apply the theme to the document
+ * Apply theme to document
  * 
  * @param theme - Theme to apply
  */
-export function applyTheme(theme: Theme): void {
-  if (typeof window === 'undefined' || !document) {
-    return
+export function applyTheme(theme: Theme) {
+  if (!isBrowser()) {
+    return // Skip on server
   }
-  
+
   const isDark = theme === 'dark' || 
     (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
   

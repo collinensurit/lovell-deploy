@@ -36,6 +36,7 @@
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
+    "critters": "^0.0.23",
     "dotenv": "^16.4.7",
     "embla-carousel-react": "^8.5.2",
     "express": "^4.21.2",
