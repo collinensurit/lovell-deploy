@@ -1,20 +1,17 @@
 import { NextResponse } from 'next/server'
-import { redis } from '@/lib/redis'
 
-export const dynamic = 'force-dynamic'
+// Using static mode for export compatibility
+export const dynamic = 'force-static'
 
 export async function GET() {
-  try {
-    const pong = await redis.ping()
-    return NextResponse.json({ status: 'ok', pong }, { status: 200 })
-  } catch (error) {
-    return NextResponse.json(
-      {
-        status: 'error',
-        message:
-          error instanceof Error ? error.message : 'Redis connection failed',
-      },
-      { status: 500 }
-    )
-  }
+  return NextResponse.json({
+    message: 'Static mock data: In static export mode, dynamic API routes are not available.'
+  })
+}
+
+export async function POST() {
+  return NextResponse.json({
+    success: false,
+    message: 'Static mock response: This API is not available in static export mode.'
+  }, { status: 200 })
 }

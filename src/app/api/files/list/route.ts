@@ -1,83 +1,42 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createServerClient, type CookieOptions } from '@supabase/ssr'
-import { cookies } from 'next/headers'
-import { createRateLimitedRoute } from '@/lib/rate-limit'
+import { NextResponse } from 'next/server'
 
-export const dynamic = 'force-dynamic'
+// Using static mode for export compatibility
+export const dynamic = 'force-static'
 
-// This function creates a Supabase client for server-side usage within a route handler
-function createServerSupabaseClient() {
-  const cookieStore = cookies()
+// Mock file list for static build
+const mockFiles = [
+  {
+    id: 'file1',
+    name: 'Document 1.pdf',
+    type: 'pdf',
+    size: 245000,
+    created_at: '2025-02-20T10:00:00Z',
+    updated_at: '2025-02-20T10:00:00Z',
+    url: '/mock/document1.pdf'
+  },
+  {
+    id: 'file2',
+    name: 'Spreadsheet.xlsx',
+    type: 'xlsx',
+    size: 125000,
+    created_at: '2025-02-19T15:30:00Z',
+    updated_at: '2025-02-19T15:30:00Z',
+    url: '/mock/spreadsheet.xlsx'
+  },
+  {
+    id: 'file3',
+    name: 'Presentation.pptx',
+    type: 'pptx',
+    size: 1850000,
+    created_at: '2025-02-18T09:15:00Z',
+    updated_at: '2025-02-18T09:15:00Z',
+    url: '/mock/presentation.pptx'
+  }
+]
 
-  return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value
-        },
-        set(name: string, value: string, options: CookieOptions) {
-          try {
-            cookieStore.set(name, value, options)
-          } catch (error) {
-            console.error('Error setting cookie:', error)
-          }
-        },
-        remove(name: string) {
-          try {
-            cookieStore.set(name, '', { expires: new Date(0) })
-          } catch (error) {
-            console.error('Error removing cookie:', error)
-          }
-        },
-      },
-    }
-  )
+export async function GET() {
+  return NextResponse.json({
+    files: mockFiles,
+    message: 'Static mock data: In static export mode, dynamic API routes are not available.'
+  })
 }
-
-export const GET = createRateLimitedRoute(async (request: NextRequest) => {
-  const supabase = createServerSupabaseClient()
-
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  if (!session) {
-    return new NextResponse('Unauthorized', { status: 401 })
-  }
-
-  const { searchParams } = new URL(request.url)
-  const directory = searchParams.get('directory') || ''
-
-  // List files from storage bucket
-  const { data: files, error } = await supabase.storage
-    .from('files')
-    .list(directory)
-
-  if (error) {
-    console.error('Error listing files:', error)
-    return NextResponse.json({ error: error.message }, { status: 500 })
-  }
-
-  // Get metadata for each file
-  const fileList = await Promise.all(
-    files.map(async (file) => {
-      const basePath = directory ? directory : ''
-      const filePath = `${basePath}/${file.name}`
-      const { data: fileMetadata } = await supabase
-        .from('file_metadata')
-        .select('*')
-        .eq('path', filePath)
-        .single()
-
-      return {
-        ...file,
-        path: filePath,
-        metadata: fileMetadata || null,
-      }
-    })
-  )
-
-  return NextResponse.json({ files: fileList })
-})
