@@ -14,7 +14,7 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\" \"backend/**/*.{ts,js}\" \"shared/**/*.{ts,js}\"",
     "lint:fix": "eslint --fix \"src/**/*.{ts,tsx}\" \"backend/**/*.{ts,js}\"",
     "prepare": "husky install",
-    "vercel-build": "node scripts/generate-static-api-routes.js && node scripts/convert-pages-to-static.js && next build"
+    "vercel-build": "node scripts/generate-static-api-routes.js && node scripts/convert-pages-to-static.js && node scripts/disable-server-actions.js && next build"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
