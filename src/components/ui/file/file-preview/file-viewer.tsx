@@ -7,7 +7,13 @@ import { downloadFile, formatFileSize } from '../../../../lib-new/utils/file/ope
 import { FILE_TYPES } from '../../../../lib-new/utils/file/types'
 import { useFileMetadata } from '../../../../lib-new/hooks/use-file-metadata'
 import { Button } from '../../button'
-import { CodePreview } from './code-preview'
+import dynamic from 'next/dynamic'
+
+// Dynamically import the code preview component to prevent SSR issues
+const CodePreview = dynamic(() => import('./code-preview').then(mod => ({ default: mod.CodePreview })), { 
+  ssr: false,
+  loading: () => <div className="p-4 bg-gray-100 rounded">Loading code preview...</div>
+})
 
 /**
  * Props for the FileViewer component

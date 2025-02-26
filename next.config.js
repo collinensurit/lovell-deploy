@@ -8,24 +8,24 @@ module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // Disable SWC minification
-  swcMinify: false,
+  // Enable SWC minification for better performance
+  swcMinify: true,
   // Use standalone output for better compatibility with Vercel
   output: 'standalone',
-  // Disable static image optimization
+  // Disable static image optimization to avoid build issues
   images: {
     unoptimized: true
   },
   // Experimental features
   experimental: {
-    disableOptimizedLoading: true,
-    optimizeCss: false,
+    // This is critical for modern Next.js features on Vercel
+    appDir: true,
+    // These options can help with performance or cause issues, adjust as needed
+    disableOptimizedLoading: false,
+    optimizeCss: true,
   },
-  // Disable static generation
-  staticPageGenerationTimeout: 1000,
-  trailingSlash: true,
-  // Always use development mode for server
-  reactStrictMode: false,
+  // Enable React strict mode for better development
+  reactStrictMode: true,
   // Provide fallback environment variables
   env: {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-url.supabase.co',
