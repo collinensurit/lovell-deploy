@@ -1,0 +1,3 @@
+#!/bin/sh
+# Pre-commit hook - empty for deployment purposes
+exit 0

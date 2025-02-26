@@ -2,9 +2,12 @@
   "name": "lovell",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "dev": "next dev",
-    "build": "NODE_ENV=production node scripts/vercel-build.js",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "node scripts/check-types.js",
