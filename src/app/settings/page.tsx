@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { Settings as SettingsIcon } from 'lucide-react'
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-static'
 export const revalidate = 0
 
 export default async function SettingsPage() {

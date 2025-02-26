@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-static';
 export const revalidate = 0;
 import * as React from 'react'
 import { TemplatesContent } from './content'

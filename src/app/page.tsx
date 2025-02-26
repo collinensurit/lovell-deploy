@@ -4,7 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 
 // Force dynamic rendering and no caching
-export const dynamic = 'force-dynamic'
+export const dynamic = 'force-static'
 export const revalidate = 0
 
 export default function HomePage() {

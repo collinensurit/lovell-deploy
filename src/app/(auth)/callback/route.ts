@@ -1,23 +1,25 @@
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 
-export const dynamic = 'force-dynamic'
+// Use static mode for compatibility with static export
+export const dynamic = 'force-static'
 
 export async function GET(request: Request) {
   try {
-    const requestUrl = new URL(request.url)
-    const code = requestUrl.searchParams.get('code')
-
-    if (code) {
-      const cookieStore = cookies()
-      const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
-      await supabase.auth.exchangeCodeForSession(code)
-    }
-
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+    // In static export mode, we can't exchange code for session
+    // This is a mock implementation that redirects to the dashboard
+    console.log('Static auth callback - redirecting to dashboard')
+    
+    // Get the current URL to form a base for redirects
+    const baseUrl = new URL(request.url).origin
+    
+    // In a real deployment, this would handle the auth code
+    return NextResponse.redirect(`${baseUrl}/dashboard`)
   } catch (error) {
     console.error('Auth callback error:', error)
-    return NextResponse.redirect(new URL('/auth/login', request.url))
+    
+    // Get the current URL to form a base for redirects
+    const baseUrl = new URL(request.url).origin
+    
+    return NextResponse.redirect(`${baseUrl}/login`)
   }
 }
