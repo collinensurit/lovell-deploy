@@ -10,23 +10,23 @@ module.exports = {
   },
   // Enable SWC minification for better performance
   swcMinify: true,
-  // Use fully dynamic mode for Vercel
-  output: 'standalone',
-  // Disable static image optimization
+  // Static export mode (no server)
+  output: 'export',
+  // Disable image optimization for static export
   images: {
     unoptimized: true
   },
-  // Disable all experimental features that might cause issues
+  // Disable all experimental features
   experimental: {
     // Disable CSS optimization which requires critters
     optimizeCss: false,
-    // Don't optimize loading for SSR
-    disableOptimizedLoading: true,
   },
-  // Completely disable static generation
-  staticPageGenerationTimeout: 0,
   // Enable React strict mode
   reactStrictMode: true,
+  // No trailing slashes in URLs
+  trailingSlash: false,
+  // Disable source maps in production
+  productionBrowserSourceMaps: false,
   // Provide fallback environment variables
   env: {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder-url.supabase.co',
