@@ -10,21 +10,22 @@ module.exports = {
   },
   // Enable SWC minification for better performance
   swcMinify: true,
-  // Switch from standalone to server mode for Vercel
-  output: 'standalone', 
-  // Disable static image optimization to avoid build issues
+  // Use fully dynamic mode for Vercel
+  output: 'standalone',
+  // Disable static image optimization
   images: {
     unoptimized: true
   },
-  // Disable static optimization to avoid document not defined errors
+  // Disable all experimental features that might cause issues
   experimental: {
-    // These options can help with performance or cause issues, adjust as needed
-    disableOptimizedLoading: false,
+    // Disable CSS optimization which requires critters
     optimizeCss: false,
+    // Don't optimize loading for SSR
+    disableOptimizedLoading: true,
   },
-  // Disable static page generation
-  staticPageGenerationTimeout: 1,
-  // Enable React strict mode for better development
+  // Completely disable static generation
+  staticPageGenerationTimeout: 0,
+  // Enable React strict mode
   reactStrictMode: true,
   // Provide fallback environment variables
   env: {
