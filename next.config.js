@@ -18,8 +18,6 @@ module.exports = {
   },
   // Experimental features
   experimental: {
-    // This is critical for modern Next.js features on Vercel
-    appDir: true,
     // These options can help with performance or cause issues, adjust as needed
     disableOptimizedLoading: false,
     optimizeCss: true,
